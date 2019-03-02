@@ -1,0 +1,134 @@
+This directory includes all MATLAB sources used in the following
+paper:
+
+Chih-Jen Lin. Projected gradient methods for non-negative matrix
+factorization. Technical report, Department of Computer Science,
+National Taiwan University, 2005.
+
+You will be able to regenerate tables in Latex format. However,
+results may be slightly different due to the randomness, the CPU
+speed, and the load of your computer.
+
+Please cite the above article if you find this tool useful. Please
+also read the COPYRIGHT file before using this tool.
+
+FILES
+=====
+
+- Drivers
+
+runsynthetic.m:	driver for running synthetic data
+runimage.m:	driver for running image data
+runtext.m:	driver for running text data
+objfig.m:	generating figures of time vs. objective value
+
+- Methods for solving NMF
+
+mult.m:		multiplicative update for NMF
+nmf.m:		alternative non-negative least squares 
+		using projected gradients for sub-problems
+nlssubprob.m:	called by nmf.m for solving sub-problems
+pgrad.m: 	direct use of projected gradients for NMF
+
+- Miscellaneous routines
+
+read_sparse.m:	reading sparse text data
+testconv.mat:	data matrices used in objfig.m
+
+RUNNING SYNTHETIC DATA
+======================
+
+- Simply type 
+
+>> runsynthetic
+
+RUNNING IMAGE DATA
+==================
+
+- Download nmfpack by Hoyer at 
+
+  http://www.cs.helsinki.fi/u/phoyer/code/nmfpack.zip
+
+  Unzip to create the directory nmfpack
+
+- Download CBCL and ORL images at
+
+  http://cbcl.mit.edu/cbcl/software-datasets/FaceData2.html
+  http://www.uk.research.att.com/facedatabase.html	
+
+- For CBCL, uncompress face.train.tar.gz to the directory
+cbcl-face-database. For ORL, uncompress files to the directory
+orl-faces. The directory structure should be like
+   
+  nmfpack/
+    data/
+      cbcl-face-database/	  
+        face/
+          face00001.pgm
+          [...]
+          face02429.pgm
+        non-face/
+          [...]
+      orl-faces/
+        README
+          s1/
+          [...]
+          s40/
+
+- Copy or link .m files to the directory nmfpack/code
+
+- Change to the directory nmfpack/code and type
+
+>> runimage
+
+RUNNING TEXT DATA
+=================
+
+- Download a subset of RCV1 data at
+
+  http://www.csie.ntu.edu.tw/~cjlin/nmf/rcv1/rcv1-v2-train.svm.zip
+
+- Uncompress rcv1-v2-train.svm.zip. Create a directoy called rcv1 and
+put the data there.
+
+- Copy or link .m files to the directory rcv1
+
+- Change to the directory rcv1 and type
+
+>> runtext
+
+FIGURE OF TIME VS. OBJECTIVE VALUES
+===================================
+
+- Simply type
+
+>> objfig
+
+- An eps file testconv.eps will be genreated.
+
+ADDITIONAL NOTES
+================
+
+To access some internal running information of nmf.m and
+nlssubprob.m, we use several global variables. Though not a good
+convention, we do not want them to be function outputs either. If you
+are using them for your own work, these variables are unnecessary and
+please download a cleaned version available at
+http://www.csie.ntu.edu.tw/~cjlin/nmf
+
+All NMF methods implemented here can be used under octave too.
+However, some driver files cannot. The one we have tested is
+runsynthetic.m, but you must comment out some places indicated in the
+file.
+
+QUESTIONS AND COMMENTS
+======================
+
+For any questions and comments, please send your email to
+cjlin@csie.ntu.edu.tw
+
+Acknowledgments: The author thanks Patrik O. Hoyer for making the
+package nmfpack available.
+
+
+
